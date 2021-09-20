@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 // Configuração das rotas da aplicação
-
 app.use('/produtos', require('./controller/produto_controller'));
+app.use('/categoria', require('./controller/categoria_controller'));
 const SERVER_PORT = parseInt(process.env.SERVER_PORT);
 
 console.log('Conectando ao banco de dados...')

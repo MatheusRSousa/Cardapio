@@ -1,0 +1,25 @@
+.mat-table {
+  margin: 1rem;
+}
+hr {
+  margin: 1rem 0rem;
+}
+form {
+  width: 100%;
+}
+
+.category-list {
+  padding: 2rem;
+  border-left: 1px #e0e0e0 solid;
+}
+
+.category-list-item {
+  display: grid;
+  grid-template-columns: 9fr 1fr 2rem;
+  margin: 1rem 0rem;
+}
+
+.category-list-item img {
+  height: 5rem;
+  border-radius: 10px;
+}

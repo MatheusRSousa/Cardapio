@@ -1,0 +1,14 @@
+.edit-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.edit-container svg {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.edit-container svg:hover {
+  transform: scale(1.1);
+}

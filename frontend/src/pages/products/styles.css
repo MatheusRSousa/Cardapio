@@ -1,0 +1,20 @@
+.products-list {
+  padding: 2rem;
+  border-left: 1px #e0e0e0 solid;
+}
+
+.products-list-item {
+  display: grid;
+  grid-template-columns: 9fr 1fr 2rem;
+  margin: 1rem 0rem;
+}
+
+.products-list-item img {
+  height: 5rem;
+  border-radius: 10px;
+}
+
+.products-list-desc {
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+}

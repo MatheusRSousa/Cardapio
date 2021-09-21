@@ -1,0 +1,21 @@
+.item {
+  padding: 1rem;
+  width: 20rem;
+  height: 20rem;
+  display: grid;
+  place-items: center;
+  background-color: rgb(25 28 36);
+  box-shadow: 5px 7px 13px 0px rgba(0, 0, 0, 0.52);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  grid-template-rows: 80% 10%;
+  color: white;
+}
+.item:hover {
+  transform: scale(1.1);
+}
+
+.item img {
+  width: 40%;
+}

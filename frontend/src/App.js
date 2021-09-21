@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Categories from "./pages/categories";
+import Home from "./pages/home";
+import Products from "./pages/products";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { theme } from "./config/theme";
+import { ThemeProvider } from "@material-ui/core";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/categories">
+            <Categories />
+          </Route>
+          <Route path="/products">
+            <Products />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
-
-export default App;

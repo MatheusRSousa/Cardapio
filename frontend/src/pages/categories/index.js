@@ -11,7 +11,7 @@ const INITIAL_VALUES = {
   nome: "",
   foto: "",
 };
-const BASE_URL = "/products/";
+const BASE_URL = "/categories/";
 
 function Categories() {
   const [currentCategory, setCurrentCategory] = useState(INITIAL_VALUES);
@@ -48,8 +48,8 @@ function Categories() {
         title="Categorias"
         initialValues={currentCategory}
         onSubmit={onSubmit}
-        clear={() => setCurrentCategory(INITIAL_VALUES)}
         validationSchema={categoryValidationSchema}
+        clear={() => setCurrentCategory(INITIAL_VALUES)}
         isEdit={!!currentCategory._id}
       >
         <Input label="Nome" name="nome" />

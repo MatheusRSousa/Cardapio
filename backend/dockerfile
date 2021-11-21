@@ -1,0 +1,22 @@
+FROM node:14.18-alpine
+
+WORKDIR /app
+# Copio o package.json => ele é quem tem as dependências
+COPY package.json .
+# Instalo as dependências
+RUN npm install
+# Copio o restante dos arquivos
+COPY . .
+
+# Valores padrão para as variáveis de ambiente da aplicação
+# Podem ser alteradas durante a execução do container
+ENV SERVER_PORT 5000
+ENV DATABASE_URL mongodb://192.168.1.112/cardapio
+
+ENV SALT_ROUNDS 5
+ENV SECRET S3cr3t0!
+
+EXPOSE 5000
+
+# A variável de ambiente DATABASE_URL deve ser passada na execução do container
+CMD npm start

@@ -19,7 +19,7 @@ const INITIAL_VALUES = {
 
 function Session() {
   const [isRegister, setIsRegister] = useState(false);
-  const [formValue, setFormValue] = useState(INITIAL_VALUES);
+  const [formValue] = useState(INITIAL_VALUES);
   const history = useHistory();
   const { search } = useLocation();
 

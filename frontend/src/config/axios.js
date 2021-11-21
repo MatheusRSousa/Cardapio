@@ -1,7 +1,7 @@
 import axios from "axios";
 import SessionService from "../services/SessionService";
 
-const http = axios.create({ baseURL: "http://localhost:5000/" });
+const http = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 http.interceptors.request.use(
   async (config) => {

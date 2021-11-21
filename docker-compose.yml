@@ -1,0 +1,22 @@
+version: "3.6"
+services:
+  front:
+    image: hiagomm/cardapio_front
+    environment:
+      - REACT_APP_API_URL=http://192.168.1.112:5000
+    ports:
+      - "3000:80"
+    depends_on:
+      - back
+
+  back:
+    image: hiagomm/cardapio_back
+    environment:
+      - DATABASE_URL=mongodb://banco/cardapio
+      - SERVER_PORT=5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - banco
+  banco:
+    image: mongo

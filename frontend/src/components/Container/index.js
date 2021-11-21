@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
+import SessionService from "../../services/SessionService";
 
 import "./styles.css";
 
@@ -19,7 +20,9 @@ function Container({ children, backTo }) {
           </h3>
         )}
       </nav>
-      <div className="container">{children}</div>
+      <div className="container" data-admin={SessionService.hasRole("ADMIN")}>
+        {children}
+      </div>
     </>
   );
 }

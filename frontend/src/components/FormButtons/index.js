@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import React from "react";
 import "./stylex.css";
 
-function FormButtons({ clear, isEdit }) {
+function FormButtons({ secondary, isEdit }) {
   return (
     <div className="button-container">
       {isEdit && (
@@ -10,7 +10,7 @@ function FormButtons({ clear, isEdit }) {
           color="primary"
           variant="contained"
           type="button"
-          onClick={() => clear()}
+          onClick={() => secondary()}
         >
           Limpar
         </Button>

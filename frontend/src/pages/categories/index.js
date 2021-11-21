@@ -4,6 +4,7 @@ import Container from "../../components/Container";
 import { Input } from "../../components/Input/Input";
 import Options from "../../components/Options";
 import http from "../../config/axios";
+import SessionService from "../../services/SessionService";
 import "./styles.css";
 import { categoryValidationSchema } from "./validationSchema";
 
@@ -43,28 +44,32 @@ function Categories() {
   };
 
   return (
-    <Container backTo="/">
-      <BasicForm
-        title="Categorias"
-        initialValues={currentCategory}
-        onSubmit={onSubmit}
-        validationSchema={categoryValidationSchema}
-        clear={() => setCurrentCategory(INITIAL_VALUES)}
-        isEdit={!!currentCategory._id}
-      >
-        <Input label="Nome" name="nome" />
-        <Input label="URL Foto" name="foto" />
-      </BasicForm>
+    <Container backTo="/home">
+      {SessionService.hasRole("ADMIN") && (
+        <BasicForm
+          title="Categorias"
+          initialValues={currentCategory}
+          onSubmit={onSubmit}
+          validationSchema={categoryValidationSchema}
+          secondary={() => setCurrentCategory(INITIAL_VALUES)}
+          isEdit={!!currentCategory._id}
+        >
+          <Input label="Nome" name="nome" />
+          <Input label="URL Foto" name="foto" />
+        </BasicForm>
+      )}
       <div className="category-list">
         {categories.map((category, index) => (
           <div key={index}>
             <div className="category-list-item">
               <h3>{category.nome}</h3>
               <img src={category.foto} alt="foto" />
-              <Options
-                handleEdit={() => handleEdit(category)}
-                handleDelete={() => handleDelete(category._id)}
-              />
+              {SessionService.hasRole("ADMIN") && (
+                <Options
+                  handleEdit={() => handleEdit(category)}
+                  handleDelete={() => handleDelete(category._id)}
+                />
+              )}
             </div>
             {index < categories.length - 1 && <hr />}
           </div>

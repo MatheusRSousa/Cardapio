@@ -7,6 +7,7 @@ import http from "../../config/axios";
 import { productsValidationSchema } from "./validationSchema";
 import "./styles.css";
 import { MenuItem } from "@material-ui/core";
+import SessionService from "../../services/SessionService";
 
 const INITIAL_VALUES = {
   nome: "",
@@ -54,28 +55,30 @@ function Products() {
   };
 
   return (
-    <Container backTo="/">
-      <BasicForm
-        title="Produtos"
-        initialValues={currentProduct}
-        onSubmit={onSubmit}
-        clear={() => setCurrentProduct(INITIAL_VALUES)}
-        validationSchema={productsValidationSchema}
-        isEdit={!!currentProduct._id}
-      >
-        <Input label="Nome" name="nome" />
-        <Input label="Descrição" name="descricao" />
-        <Input label="Valor" type="number" name="valor" />
-        <Input label="Foto" name="foto" />
-        <Input label="Categoria" name="categoria" select>
-          <MenuItem key={0} value="" />
-          {categories.map((category) => (
-            <MenuItem key={category._id} value={category._id}>
-              {category.nome}
-            </MenuItem>
-          ))}
-        </Input>
-      </BasicForm>
+    <Container backTo="/home">
+      {SessionService.hasRole("ADMIN") && (
+        <BasicForm
+          title="Produtos"
+          initialValues={currentProduct}
+          onSubmit={onSubmit}
+          secondary={() => setCurrentProduct(INITIAL_VALUES)}
+          validationSchema={productsValidationSchema}
+          isEdit={!!currentProduct._id}
+        >
+          <Input label="Nome" name="nome" />
+          <Input label="Descrição" name="descricao" />
+          <Input label="Valor" type="number" name="valor" />
+          <Input label="Foto" name="foto" />
+          <Input label="Categoria" name="categoria" select>
+            <MenuItem key={0} value="" />
+            {categories.map((category) => (
+              <MenuItem key={category._id} value={category._id}>
+                {category.nome}
+              </MenuItem>
+            ))}
+          </Input>
+        </BasicForm>
+      )}
       <div className="products-list">
         {products.map((product, index) => (
           <div key={index}>
@@ -86,10 +89,12 @@ function Products() {
                 <span>{product.descricao}</span>
               </div>
               <img src={product.foto} alt="foto" />
-              <Options
-                handleEdit={() => handleEdit(product)}
-                handleDelete={() => handleDelete(product._id)}
-              />
+              {SessionService.hasRole("ADMIN") && (
+                <Options
+                  handleEdit={() => handleEdit(product)}
+                  handleDelete={() => handleDelete(product._id)}
+                />
+              )}
             </div>
             {index < products.length - 1 && <hr />}
           </div>
